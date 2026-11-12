@@ -1,0 +1,51 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Project card</title><style>
+@font-face{font-family:SG;src:url(../assets/fonts/space-grotesk-latin-700.woff2) format('woff2');font-weight:700}
+@font-face{font-family:SG;src:url(../assets/fonts/space-grotesk-latin-600.woff2) format('woff2');font-weight:600}
+@font-face{font-family:SG;src:url(../assets/fonts/space-grotesk-latin-500.woff2) format('woff2');font-weight:500}
+html,body{margin:0;width:1280px;height:640px;overflow:hidden}
+body{background:#0a0f1c;color:#e8edf7;font-family:SG,system-ui,sans-serif;position:relative}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(120,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(120,160,255,.07) 1px,transparent 1px);background-size:48px 48px}
+.g1{position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.26),transparent 65%);top:-280px;right:-170px}
+.g2{position:absolute;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.2),transparent 65%);bottom:-320px;left:-150px}
+.c{position:absolute;inset:0;padding:70px 84px 64px;display:flex;flex-direction:column}
+.k{margin:0;font:500 21px ui-monospace,Menlo,monospace;color:#7dd3fc;letter-spacing:.06em;text-transform:uppercase}
+.k i{display:inline-block;width:11px;height:11px;border-radius:50%;background:#34d399;margin-right:14px;box-shadow:0 0 14px #34d399;vertical-align:2px}
+h1{font-weight:700;font-size:84px;line-height:1.02;margin:26px 0 0;letter-spacing:-.025em;max-width:1000px}
+h1 span{background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;color:transparent}
+.t{font-weight:500;font-size:29px;line-height:1.35;margin:22px 0 0;color:#cbd5e1;max-width:940px}
+.row{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;max-width:760px}
+.chips b{font:500 20px SG;padding:9px 17px;border:1px solid rgba(148,163,184,.35);border-radius:999px;background:rgba(15,23,42,.65)}
+.stats{display:flex;gap:44px}
+.stats div{display:flex;flex-direction:column}
+.stats strong{font:700 52px SG;line-height:1;background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;color:transparent}
+.stats small{font:500 18px SG;color:#94a3b8;margin-top:8px}
+.foot{position:absolute;left:84px;right:84px;top:0;display:flex;justify-content:flex-end;padding-top:70px;font:500 21px ui-monospace,Menlo,monospace;color:#94a3b8}
+.flow{display:flex;align-items:center;gap:11px;margin-top:40px}
+.flow b{white-space:nowrap;font:500 19px ui-monospace,Menlo,monospace;color:#e2e8f0;padding:11px 15px;border:1px solid rgba(56,189,248,.45);border-radius:12px;background:rgba(14,165,233,.08)}
+.flow b:last-child{border-color:rgba(167,139,250,.6);background:rgba(167,139,250,.1)}
+.flow em{font-style:normal;color:#7dd3fc;font-size:22px}
+.chips.wide{max-width:1112px}
+</style></head><body><div class="grid"></div><div class="g1"></div><div class="g2"></div>
+<div class="foot" id="foot"></div>
+<div class="c"><p class="k"><i></i><span id="kind"></span></p><h1 id="title"></h1><p class="t" id="sub"></p><div class="flow" id="flow"></div>
+<div class="row"><div class="chips" id="chips"></div><div class="stats" id="stats"></div></div></div>
+<script>
+const P = {
+  myportfolio: { flow: ['Visitor', 'CloudFront', 'OAC', 'Private S3'], kind: 'Live site · AWS · Terraform', title: 'Portfolio <span>Website</span>', sub: 'Private S3 behind CloudFront with Origin Access Control, strict security headers, and a CI pipeline that scans the Terraform.', chips: ['Terraform', 'CloudFront + OAC', 'CSP and HSTS', 'GitHub Actions', 'Checkov'], stats: [] },
+  'securecart-aws-security-architecture': { flow: ['Internet', 'AWS WAF', 'ALB', 'Private app tier', 'Private RDS'], kind: 'AWS security lab', title: 'Secure<span>Cart</span>', sub: 'An intentionally insecure e-commerce stack rebuilt as a segmented, private AWS architecture.', chips: ['VPC', 'ALB', 'Private RDS', 'KMS', 'AWS WAF', 'Security groups'], stats: [] },
+  'foody-woody-secure-aws-website': { flow: ['Visitor', 'AWS WAF', 'CloudFront', 'OAC', 'Private S3'], kind: 'AWS security lab', title: 'Foody <span>Woody</span>', sub: 'A static website served from a private S3 bucket through CloudFront, Origin Access Control, and AWS WAF.', chips: ['S3', 'CloudFront', 'OAC', 'AWS WAF', 'HTTPS only'], stats: [] },
+  'threat-hunt-azuki-breach-saga': { flow: ['Phishing', 'Credential theft', 'Lateral movement', 'Exfiltration', 'Ransomware'], kind: 'Threat hunting lab', title: 'The Azuki <span>Breach Saga</span>', sub: 'A simulated eight-day ransomware intrusion, reconstructed end to end with KQL over endpoint telemetry.', chips: ['Defender for Endpoint', 'KQL', 'Log Analytics', 'MITRE ATT&CK'], stats: [['91', 'flags investigated'], ['27', 'ATT&CK techniques']] },
+  'tor-threat-hunting-scenario': { flow: ['Silent install', 'Tor launch', 'Port 9001 relays', 'Device isolated'], kind: 'Threat hunting lab', title: 'Unauthorized <span>Tor Usage</span>', sub: 'A silent Tor Browser install traced across file, process, and network events, then the device was isolated.', chips: ['Defender for Endpoint', 'KQL', 'MITRE ATT&CK', 'Azure VM'], stats: [] },
+  'vulnerability-management-program': { kind: 'Vulnerability management lab', title: 'Vulnerability <span>Management Program</span>', sub: 'Policy to remediation on Azure VMs: credentialed scans, prioritization, change control, and risk acceptance.', chips: ['Tenable', 'PowerShell', 'Azure', 'Risk management'], stats: [['80%', 'fewer findings'], ['100%', 'criticals fixed']] },
+};
+const id = new URLSearchParams(location.search).get('p'), d = P[id];
+document.getElementById('kind').textContent = d.kind;
+document.getElementById('title').innerHTML = d.title;
+document.getElementById('sub').textContent = d.sub;
+document.getElementById('foot').textContent = 'Neel Moradiya · neelmoradiya.com';
+document.getElementById('chips').innerHTML = d.chips.map(c => '<b>' + c.replace(/&(?!amp;)/g, '&amp;') + '</b>').join('');
+document.getElementById('flow').innerHTML = (d.flow || []).map(f => '<b>' + f + '</b>').join('<em>→</em>');
+if (!d.stats.length) document.getElementById('chips').classList.add('wide');
+document.getElementById('stats').innerHTML = d.stats.map(s => '<div><strong>' + s[0] + '</strong><small>' + s[1].replace(/&/g, '&amp;') + '</small></div>').join('');
+</script></body></html>
