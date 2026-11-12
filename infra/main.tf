@@ -33,7 +33,14 @@ locals {
 }
 
 # ---------- Site bucket: private, encrypted, versioned ----------
-resource "aws_s3_bucket" "site" { bucket = local.bucket }
+resource "aws_s3_bucket" "site" {
+  bucket = local.bucket
+  #checkov:skip=CKV_AWS_18:Bucket is reachable only through CloudFront (OAC); CloudFront access logs cover all reads
+  #checkov:skip=CKV_AWS_144:Content is rebuilt from this repository; cross-region replication adds cost without benefit
+  #checkov:skip=CKV_AWS_145:Public static content; SSE-S3 is sufficient and avoids KMS key policy and cost for OAC
+  #checkov:skip=CKV2_AWS_61:A few small static files; noncurrent versions are kept on purpose for rollback
+  #checkov:skip=CKV2_AWS_62:No downstream consumer for object events
+}
 
 resource "aws_s3_bucket_public_access_block" "site" {
   bucket                  = aws_s3_bucket.site.id
@@ -87,10 +94,18 @@ resource "aws_s3_bucket_policy" "site" {
 }
 
 # ---------- Log bucket for CloudFront access logs ----------
-resource "aws_s3_bucket" "logs" { bucket = "${local.bucket}-logs" }
+resource "aws_s3_bucket" "logs" {
+  bucket = "${local.bucket}-logs"
+  #checkov:skip=CKV_AWS_18:This is the log bucket; logging it to itself would loop
+  #checkov:skip=CKV_AWS_21:Append-only access logs that expire after 90 days
+  #checkov:skip=CKV_AWS_144:Short-lived access logs; replication adds cost without benefit
+  #checkov:skip=CKV_AWS_145:SSE-S3 is used; SSE-KMS would need a customer managed key and key policy for log delivery
+  #checkov:skip=CKV2_AWS_62:No downstream consumer for object events
+}
 
 resource "aws_s3_bucket_ownership_controls" "logs" {
   bucket = aws_s3_bucket.logs.id
+  #checkov:skip=CKV2_AWS_65:CloudFront standard logging writes through the log-delivery ACL, so ACLs must stay enabled here
   rule { object_ownership = "BucketOwnerPreferred" } # CloudFront standard logs need ACLs
 }
 
@@ -116,6 +131,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "logs" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "logs" {
+  #checkov:skip=CKV_AWS_300:CloudFront writes log files as single PUTs; no multipart uploads to abort
   bucket = aws_s3_bucket.logs.id
   rule {
     id     = "expire-logs"
@@ -215,6 +231,10 @@ resource "aws_cloudfront_function" "www_redirect" {
 data "aws_cloudfront_cache_policy" "optimized" { name = "Managed-CachingOptimized" }
 
 resource "aws_cloudfront_distribution" "site" {
+  #checkov:skip=CKV_AWS_68:Static site with GET/HEAD only, no forms or APIs; strict CSP instead of WAF, which costs more than the site
+  #checkov:skip=CKV2_AWS_47:No WAF attached (see CKV_AWS_68); no server-side code, so Log4j does not apply
+  #checkov:skip=CKV_AWS_310:Single-origin personal site; origin failover is not worth a second bucket
+  #checkov:skip=CKV_AWS_374:Public portfolio meant to be reachable worldwide
   enabled             = true
   is_ipv6_enabled     = true
   http_version        = "http2and3"

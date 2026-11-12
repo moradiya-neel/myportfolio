@@ -1,5 +1,7 @@
 # neelmoradiya.com
 
+[![CI](https://github.com/moradiya-neel/myportfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/moradiya-neel/myportfolio/actions/workflows/ci.yml)
+
 Source for my personal portfolio site, **[neelmoradiya.com](https://neelmoradiya.com)**: a static site I designed, built, and host on my own AWS account, with the infrastructure written in Terraform.
 
 The site is small on purpose. The interesting part is how it is served: a private bucket, an edge that adds strict security headers, and a page that checks those headers on itself.
@@ -30,6 +32,10 @@ DNS: Cloudflare (DNS only, not proxied) → CloudFront     Certificate: ACM, DNS
 
 The "This site audits itself" section on the page sends a `HEAD` request to its own URL and shows which security headers came back, so anyone can see the controls working.
 
+## CI and IaC scanning
+
+Every push runs three GitHub Actions jobs: the site build, `terraform fmt` and `terraform validate`, and a [Checkov](https://www.checkov.io/) scan of the Terraform. Checkov passes 41 checks. Sixteen findings are accepted risks for a static personal site (for example, no WAF, no cross-region replication, SSE-S3 instead of KMS), and each is documented next to the resource with its reason. Any new finding fails the build.
+
 ## Project layout
 
 | Path | What it is |
@@ -40,6 +46,7 @@ The "This site audits itself" section on the page sends a `HEAD` request to its 
 | `build.mjs` | Builds the deployable site into `site/` (cache-busted asset names, sitemap, robots.txt) |
 | `infra/main.tf` | Terraform for S3, CloudFront, ACM, the security headers policy, and the edge function |
 | `assets/fonts/` | Self-hosted Space Grotesk with its license |
+| `.github/workflows/ci.yml` | Build, Terraform checks, and Checkov scan on every push |
 | `newyear/` | A small standalone greeting page served at `/newyear/` |
 
 ## Build and preview
@@ -71,7 +78,7 @@ Credentials come from a dedicated, least-privilege deploy user, never from root.
 
 ## Roadmap
 
-- GitHub Actions deploy using OIDC (no stored AWS keys), with Checkov scanning the Terraform
+- Deploy from GitHub Actions using OIDC (no stored AWS keys)
 - Remote Terraform state in S3 with locking
 
 ## License
