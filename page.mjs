@@ -15,7 +15,7 @@ export function F(s) {
   const term = [
     ['whoami', ['neel moradiya · cloud security engineer · new york']],
     ['cat certifications.txt', ['CompTIA Security+', 'AWS Certified Cloud Practitioner']],
-    ['ls projects/', ['securecart-aws/  azuki-threat-hunt/  vuln-mgmt-program/', 'foody-woody/  tor-threat-hunt/']],
+    ['ls projects/', ['securecart-aws/  azuki-threat-hunt/  vuln-mgmt-program/', 'foody-woody/  tor-threat-hunt/  neelmoradiya.com/']],
     ['cat focus.txt', ['cloud security · AWS · detection and response']],
     ['echo $STATUS', ['open to cloud security roles']],
   ];
@@ -51,7 +51,7 @@ export function F(s) {
 
 <main>
 <section id="work" class="wrap">${label('Projects')}<div class="work">
-${s.projects.map((p, i) => `<article class="proj reveal${i === 0 ? ' wide' : ''}" id="${esc(p.repo.split('/').pop())}">
+${s.projects.map((p, i, all) => `<article class="proj reveal${i === 0 || (i === all.length - 1 && i % 2 === 1) ? ' wide' : ''}" id="${esc(p.repo.split('/').pop())}">
 <a class="shot" href="${p.repo}" target="_blank" rel="noopener" aria-label="${esc(p.name)} on GitHub">${diagramFor(p.name) ? `<figure class="fig">${diagramFor(p.name)}</figure>` : ''}</a>
 <div class="pmeta"><span>${esc(p.kind)}</span><span>${esc(p.date)}</span></div>
 <h3><a href="${p.repo}" target="_blank" rel="noopener">${esc(p.name.replace(/^([^:]+):\s*/, '$1 · '))}</a></h3>

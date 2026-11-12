@@ -37,12 +37,17 @@ const diagrams = {
         <rect class="bar after" x="90" y="${y + 16}" height="13" width="${Math.max((b / 30) * W, 2)}" data-d="${0.5 + i * 0.12}"/><text class="cap" x="${96 + Math.max((b / 30) * W, 2)}" y="${y + 27}">${b}</text>`; }).join('')}
       <g class="legend"><rect class="before" x="90" y="176" width="12" height="10"/><text class="cap" x="108" y="185">First scan</text><rect class="after" x="190" y="176" width="12" height="10"/><text class="cap" x="208" y="185">After six scans</text></g></svg>`;
   })(),
+  portfolio: `<svg viewBox="0 0 560 190" role="img" aria-label="This site: visitor over HTTPS to CloudFront, which adds security headers and serves a private S3 bucket through Origin Access Control; GitHub Actions checks every push">${defs}
+    ${box(10, 75, 90, 40, 'Visitor', 'n ext')}${box(140, 75, 120, 40, 'CloudFront')}${box(130, 10, 140, 36, 'Headers policy', 'n waf')}${box(300, 75, 110, 40, 'OAC')}${box(450, 75, 100, 40, 'Private S3', 'n db')}
+    ${arrow(100, 95, 138, 95)}${arrow(200, 46, 200, 73)}${arrow(260, 95, 298, 95)}${arrow(410, 95, 448, 95)}
+    <text class="cap" x="290" y="32">CSP · HSTS · nosniff · frame DENY</text><text class="cap" x="104" y="135">TLS 1.2+ · HTTP/2 and HTTP/3 · ACM</text>
+    <text class="cap" x="10" y="175">GitHub Actions: build → terraform validate → Checkov</text></svg>`,
   tor: `<svg viewBox="0 0 560 120" role="img" aria-label="Tor hunt timeline: silent install, browser launch, relay connection on port 9001, endpoint isolated">${defs}
     ${box(6, 35, 120, 40, 'Silent install /S')}${box(150, 35, 120, 40, 'Tor launched')}${box(294, 35, 120, 40, 'Relay :9001', 'n waf')}${box(438, 35, 116, 40, 'Isolated', 'n db')}
     ${arrow(126, 55, 148, 55)}${arrow(270, 55, 292, 55)}${arrow(414, 55, 436, 55)}
     <text class="cap" x="6" y="105">DeviceFileEvents → DeviceProcessEvents → DeviceNetworkEvents (KQL)</text></svg>`,
 };
-export const diagramFor = (name) => (/SecureCart/.test(name) ? diagrams.securecart : /Foody/.test(name) ? diagrams.foody : /Azuki/.test(name) ? diagrams.azuki : /Vulnerability/.test(name) ? diagrams.vuln : /Tor/.test(name) ? diagrams.tor : '');
+export const diagramFor = (name) => (/SecureCart/.test(name) ? diagrams.securecart : /Foody/.test(name) ? diagrams.foody : /Azuki/.test(name) ? diagrams.azuki : /Vulnerability/.test(name) ? diagrams.vuln : /Tor/.test(name) ? diagrams.tor : /Portfolio/.test(name) ? diagrams.portfolio : '');
 
 export const stats = [
   [12, '+', 'SMB clients supported on AWS'],

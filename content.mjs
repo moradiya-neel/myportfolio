@@ -80,6 +80,12 @@ export const site = {
       highlights: ['Found a silent Tor Browser install, launch, and relay connections on port 9001', 'Chronological timeline and response: endpoint isolated, manager notified'],
       tags: ['Defender for Endpoint', 'KQL'],
     },
+    {
+      name: 'Portfolio Website: This Site', kind: 'Live site', date: 'Nov 2026', repo: 'https://github.com/moradiya-neel/myportfolio',
+      summary: 'The site you are reading: designed, built, and hosted on my own AWS account, with all infrastructure in Terraform.',
+      highlights: ['Private S3 bucket served only through CloudFront with Origin Access Control', 'Strict CSP, HSTS with preload, and other headers from a response headers policy', 'The page checks its own security headers live, in the audit section below', 'GitHub Actions on every push: build, Terraform validate, Checkov scan'],
+      tags: ['Terraform', 'CloudFront', 'OAC', 'ACM', 'GitHub Actions', 'Checkov'],
+    },
   ],
   skills: [
     { group: 'Cloud security', items: ['AWS IAM and IAM Identity Center', 'Organizations and SCPs', 'VPC design and segmentation', 'KMS and encryption', 'AWS WAF', 'CloudFront with OAC', 'Secrets Manager'] },
