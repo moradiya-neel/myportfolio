@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy New Year | Saal Mubarak from Neel</title>
+<meta name="description" content="Nutan Varsh Abhinandan. A fireworks greeting for the new year, Vikram Samvat 2083, from Neel Moradiya.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Happy New Year | Saal Mubarak">
+<meta property="og:description" content="Tap to light the sky. Wishing you a year of light, health and success. From Neel.">
+<meta property="og:url" content="https://neelmoradiya.com/newyear/">
+<meta property="og:image" content="https://neelmoradiya.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://neelmoradiya.com/newyear/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/newyear/ny.css">
+<script src="/newyear/ny.js" defer></script>
+</head>
+<body class="intro">
+<div class="sky" aria-hidden="true"></div>
+<div class="grid" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="scan" aria-hidden="true"></div>
+
+<button class="skip" id="skip" type="button">Skip intro</button>
+
+<main class="stage" id="stage">
+  <p class="kicker r"><span class="pulse"></span>nutan_varsh.exe <b>·</b> Vikram Samvat 2083</p>
+
+  <h1 class="title r"><span class="glitch" data-text="Happy New Year">Happy New Year</span></h1>
+
+  <p class="native r"><span lang="gu">નૂતન વર્ષાભિનંદન</span><i>✦</i><span lang="gu">સાલ મુબારક</span><i>✦</i><span lang="hi">नव वर्ष की शुभकामनाएँ</span></p>
+
+  <p class="wish r">May this year fill your home with light, your family with health, and everything you build with success.</p>
+
+  <section class="term r" aria-label="Terminal greeting">
+    <div class="tbar"><i></i><i></i><i></i><span>zsh · neel@secbox</span></div>
+    <pre id="tty"></pre>
+  </section>
+
+  <figure class="quote r" aria-live="polite">
+    <blockquote id="q">Tamaso mā jyotir gamaya</blockquote>
+    <figcaption id="qa">Brihadaranyaka Upanishad</figcaption>
+    <div class="qbar"><span id="qprog"></span></div>
+  </figure>
+
+  <div class="actions r">
+    <button id="finale" type="button" class="btn hot">Launch the finale</button>
+    <button id="share" type="button" class="btn">Share the light</button>
+    <a class="btn ghost" href="/">Visit neelmoradiya.com</a>
+  </div>
+
+  <div class="diyas r" aria-hidden="true">
+  <span class="diya"><i></i></span><span class="diya"><i></i></span><span class="diya"><i></i></span><span class="diya"><i></i></span><span class="diya"><i></i></span><span class="diya"><i></i></span><span class="diya"><i></i></span>
+</div>
+
+  <p class="hint r">Tap anywhere on the sky to light your own firework</p>
+  <p class="sign r">With warm wishes, <b>Neel Moradiya</b></p>
+</main>
+
+
+<div class="fname" id="fname" aria-hidden="true">
+  <span class="fk">Saal Mubarak &nbsp;✦&nbsp; Happy New Year</span>
+  <b class="fn">from Neel Moradiya</b>
+  <span class="fs">Vikram Samvat 2083</span>
+</div>
+
+<div class="sharebox" id="sharebox" role="dialog" aria-modal="true" aria-labelledby="shareTitle" hidden>
+  <div class="sbcard">
+    <h2 id="shareTitle">Share the light</h2>
+    <p>Send this New Year greeting to friends and family.</p>
+    <div class="sbrow"><input id="shareUrl" type="text" readonly value="https://neelmoradiya.com/newyear"><button id="copyLink" type="button" class="btn hot">Copy</button></div>
+    <div class="sbapps">
+      <a id="shWa" class="btn" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="shX" class="btn" target="_blank" rel="noopener">X</a>
+      <a id="shMail" class="btn">Email</a>
+    </div>
+    <button id="shareClose" type="button" class="btn ghost">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<noscript><p class="noscript">Happy New Year! Turn on JavaScript to see the fireworks.</p></noscript>
+</body>
+</html>

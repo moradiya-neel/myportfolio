@@ -1,0 +1,19 @@
+# Build output and dependencies
+site/
+node_modules/
+.DS_Store
+
+# Personal files kept off GitHub
+*.pdf
+
+# Terraform: state, plans, local vars, logs, provider cache
+infra/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+infra/*.log
+crash.log
+
+# Account-specific IAM policy for the deploy user
+infra/portfolio-deployer-policy.json
