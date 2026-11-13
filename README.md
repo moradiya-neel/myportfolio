@@ -48,7 +48,6 @@ Every push runs three GitHub Actions jobs: the site build, `terraform fmt` and `
 | `assets/fonts/` | Self-hosted Space Grotesk with its license |
 | `.github/workflows/ci.yml` | Build, Terraform checks, and Checkov scan on every push |
 | `cards/` | Social preview cards for my GitHub repositories (open `card.html?p=<repo>` and capture at 1280×640) |
-| `newyear/` | A small standalone greeting page served at `/newyear/` |
 
 ## Build and preview
 

@@ -219,7 +219,7 @@ resource "aws_cloudfront_function" "www_redirect" {
         return { statusCode: 301, statusDescription: 'Moved Permanently',
                  headers: { location: { value: 'https://${var.domain}' + req.uri } } };
       }
-      // Folder URLs (/newyear or /newyear/) serve that folder's index.html from S3.
+      // Folder URLs (/folder or /folder/) serve that folder's index.html from S3.
       var uri = req.uri;
       if (uri.endsWith('/')) { req.uri = uri + 'index.html'; }
       else if (uri.split('/').pop().indexOf('.') === -1) { req.uri = uri + '/index.html'; }

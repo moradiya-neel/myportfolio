@@ -21,16 +21,9 @@ fs.writeFileSync(path.join(OUT, 'style.css'), css);
 fs.writeFileSync(path.join(OUT, 'main.js'), js);
 for (const f of ['favicon.svg', s.contact.resume]) if (fs.existsSync(f)) fs.copyFileSync(f, path.join(OUT, f)); else console.warn('skipped missing ' + f);
 fs.cpSync('assets', path.join(OUT, 'assets'), { recursive: true });
-// /newyear greeting page (static files in newyear/), with the same version stamps.
-fs.mkdirSync(path.join(OUT, 'newyear'), { recursive: true });
-const nyCss = fs.readFileSync('newyear/ny.css', 'utf8'), nyJs = fs.readFileSync('newyear/ny.js', 'utf8');
-fs.writeFileSync(path.join(OUT, 'newyear', 'ny.css'), nyCss);
-fs.writeFileSync(path.join(OUT, 'newyear', 'ny.js'), nyJs);
-fs.writeFileSync(path.join(OUT, 'newyear', 'index.html'), fs.readFileSync('newyear/index.html', 'utf8')
-  .replace('href="/newyear/ny.css"', `href="/newyear/ny.css?v=${v(nyCss)}"`).replace('src="/newyear/ny.js"', `src="/newyear/ny.js?v=${v(nyJs)}"`));
 // Search engines: robots.txt and sitemap.xml. Link previews: og.png (1200x630, made from og.html with a browser screenshot).
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(path.join(OUT, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://neelmoradiya.com/sitemap.xml\n');
-fs.writeFileSync(path.join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n<url><loc>https://neelmoradiya.com/</loc><lastmod>${today}</lastmod></url>\n<url><loc>https://neelmoradiya.com/newyear/</loc><lastmod>${today}</lastmod></url>\n</urlset>\n`);
+fs.writeFileSync(path.join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n<url><loc>https://neelmoradiya.com/</loc><lastmod>${today}</lastmod></url>\n</urlset>\n`);
 if (fs.existsSync('og.png')) fs.copyFileSync('og.png', path.join(OUT, 'og.png'));
 console.log('built site/ (index.html, style.css, main.js, favicon, resume, assets)');
