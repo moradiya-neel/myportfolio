@@ -31,10 +31,10 @@ export const site = {
   ],
   experience: [
     // FROM JAN 2027 (not yet): add a new first entry
-    //   { role: 'IT & Security Administrator', org: 'Legend Drugs (Independent Pharmacy)', where: 'Bronx, NY', dates: 'Jan 2027 – Present', points: [...] },
+    //   { role: 'IT & Security Administrator', org: 'Legend Drugs', where: 'Bronx, NY', dates: 'Jan 2027 – Present', points: [...] },
     // and change the dates of the contract entry below to 'Mar 2026 – Dec 2026'.
     {
-      role: 'Information Security & IT Consultant (Contract)', org: 'Legend Drugs (Independent Pharmacy)', where: 'Bronx, NY', dates: 'Mar 2026 – Present',
+      role: 'Information Security & IT Consultant (Contract)', org: 'Legend Drugs', where: 'Bronx, NY', dates: 'Mar 2026 – Present',
       points: [
         'Sole IT and security owner for a HIPAA-regulated pharmacy, responsible for all endpoints, POS systems, server and network infrastructure handling ePHI.',
         'Identified and remediated 15 security findings and documented them in a baseline HIPAA security risk assessment.',
