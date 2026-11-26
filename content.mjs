@@ -24,7 +24,7 @@ export const site = {
     { name: 'CompTIA Security+', note: 'Valid through Nov 2028' },
     { name: 'AWS Certified Cloud Practitioner', note: 'Valid through Dec 2028' },
   ],
-  learning: ['AWS Certified Solutions Architect Associate', 'AWS Certified Security Specialty'],
+  learning: [],   // Neel 2026-11-25: list a cert only once it is earned
   education: [
     { school: 'Yeshiva University, Katz School of Science and Health', degree: 'Master of Science in Cybersecurity', dates: '2024 – 2026', note: 'GPA 3.7. Degree conferred January 2026.' },
     { school: 'SRK University', degree: 'Bachelor of Computer Applications', dates: '2020 – 2023', note: '' },
@@ -34,7 +34,7 @@ export const site = {
     //   { role: 'IT & Security Administrator', org: 'Legend Drugs', where: 'Bronx, NY', dates: 'Jan 2027 – Present', points: [...] },
     // and change the dates of the contract entry below to 'Mar 2026 – Dec 2026'.
     {
-      role: 'Information Security & IT Consultant (Contract)', org: 'Legend Drugs', where: 'Bronx, NY', dates: 'Mar 2026 – Present',
+      role: 'Information Security & IT Consultant', org: 'Legend Drugs', where: 'Bronx, NY', dates: 'Mar 2026 – Present',
       points: [
         'Sole IT and security owner for a HIPAA-regulated pharmacy, responsible for all endpoints, POS systems, server and network infrastructure handling ePHI.',
         'Identified and remediated 15 security findings and documented them in a baseline HIPAA security risk assessment.',
