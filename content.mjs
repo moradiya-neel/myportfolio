@@ -1,14 +1,17 @@
 // Single source of site content.
-// Rules: never name the healthcare client; labs are labs; no phone or home address; only verified claims.
+// Rules: labs are labs; no phone or home address; only verified claims.
+// Legend Drugs (Neel, 2026-11-25): public bullets only. Never name any product, software, or vendor used there,
+// never mention device counts, IP addresses, network details, weaknesses, or incidents. No AWS claims for this role.
 export const site = {
   name: 'Neel Moradiya',
   fullName: 'Neelkumar Rameshbhai Moradiya',
-  title: 'Cloud Security Engineer',
+  title: 'Information Security & IT Consultant',
+  headline: 'Information Security · Cloud Security · New York',
   location: 'New York, NY',
-  tagline: 'I secure AWS environments: least-privilege IAM, network segmentation, encryption, logging and monitoring, and the documentation that keeps them that way.',
+  tagline: 'I secure healthcare IT and AWS cloud environments: HIPAA risk assessment, endpoint protection, access control, network segmentation, and least-privilege cloud design.',
   about: [
-    'I am a cloud security engineer focused on AWS. On my current contract I support the security and day-to-day management of a healthcare client’s AWS environment, covering identity and access, network security, encryption, logging, monitoring, backup, and recovery.',
-    'Before that I spent 13 months as a Cloud Engineer at Diversity Infotech, building VPC architectures and supporting EC2 workloads for small and medium-sized businesses. I hold an MS in Cybersecurity from Yeshiva University, and I keep sharpening my detection and response skills through hands-on threat hunting labs with Microsoft Defender for Endpoint and KQL.',
+    'I am an information security and IT consultant. At Legend Drugs, an independent pharmacy in the Bronx, I am the sole IT and security owner for a HIPAA-regulated business: I assess risk, protect every endpoint, control who can access patient health information, and monitor the environment day to day.',
+    'Before that I spent 13 months as a Cloud Engineer at Diversity Infotech, building AWS VPC architectures and supporting EC2 workloads for small and medium-sized businesses. I hold an MS in Cybersecurity from Yeshiva University, and I keep sharpening my cloud security and detection skills through hands-on AWS and threat hunting labs.',
   ],
   contact: {
     email: 'contact@neelmoradiya.com',
@@ -26,13 +29,17 @@ export const site = {
     { school: 'SRK University', degree: 'Bachelor of Computer Applications', dates: '2020 – 2023', note: '' },
   ],
   experience: [
+    // FROM JAN 2027 (not yet): add a new first entry
+    //   { role: 'IT & Security Administrator', org: 'Legend Drugs (Independent Pharmacy)', where: 'Bronx, NY', dates: 'Jan 2027 – Present', points: [...] },
+    // and change the dates of the contract entry below to 'Mar 2026 – Dec 2026'.
     {
-      role: 'AWS Cloud Security Engineer (Contract)', org: 'Independent Contractor, Confidential Healthcare Client', where: 'New York, NY', dates: 'Mar 2026 – Present',
+      role: 'Information Security & IT Consultant (Contract)', org: 'Legend Drugs (Independent Pharmacy)', where: 'Bronx, NY', dates: 'Mar 2026 – Present',
       points: [
-        'Design and maintain security controls across AWS covering IAM, network security, encryption, logging, monitoring, backup, and recovery.',
-        'Implement and continuously review least-privilege IAM and separation of duties to reduce unnecessary access.',
-        'Run detective controls with CloudTrail, CloudWatch alarms, GuardDuty, Security Hub, and AWS Config, and remediate misconfigurations and public exposure.',
-        'Evaluate infrastructure changes for security risk and maintain architecture diagrams, procedures, and recovery runbooks.',
+        'Sole IT and security owner for a HIPAA-regulated pharmacy, responsible for all endpoints, POS systems, server and network infrastructure handling ePHI.',
+        'Identified and remediated 15 security findings and documented them in a baseline HIPAA security risk assessment.',
+        'Deployed endpoint detection and response (EDR) across 100% of endpoints and enforced automatic patching.',
+        'Implemented access controls including MFA, unique user logins, a password policy, and staff offboarding, applying HIPAA’s minimum-necessary principle.',
+        'Set up ongoing security monitoring and delivered a year-end security report with a prioritized roadmap.',
       ],
     },
     {
@@ -88,10 +95,11 @@ export const site = {
     },
   ],
   skills: [
+    { group: 'Security operations and compliance', items: ['HIPAA Security Rule', 'ePHI protection', 'Security risk assessment', 'Incident response', 'EDR', 'Patch management', 'Access control and MFA', 'Network segmentation', 'Backup and recovery'] },
     { group: 'Cloud security', items: ['AWS IAM and IAM Identity Center', 'Organizations and SCPs', 'VPC design and segmentation', 'KMS and encryption', 'AWS WAF', 'CloudFront with OAC', 'Secrets Manager'] },
     { group: 'Monitoring and detection', items: ['CloudTrail', 'CloudWatch', 'GuardDuty', 'Security Hub', 'AWS Config', 'Amazon Inspector', 'VPC Flow Logs'] },
     { group: 'Threat hunting and vulnerability', items: ['Microsoft Defender for Endpoint', 'KQL', 'Azure Log Analytics', 'Tenable (Nessus)', 'MITRE ATT&CK'] },
-    { group: 'Automation and systems', items: ['Terraform', 'Python', 'PowerShell', 'Windows and Windows Server', 'Linux', 'Active Directory'] },
+    { group: 'Automation and systems', items: ['Terraform', 'Python', 'PowerShell', 'Windows and Windows Server', 'Linux', 'Active Directory', 'Microsoft 365'] },
     { group: 'Frameworks', items: ['NIST CSF', 'CIS Benchmarks', 'OWASP Top 10', 'CVE/CWE', 'CVSS'] },
   ],
 };

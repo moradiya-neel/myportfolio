@@ -9,15 +9,15 @@ const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 export function F(s) {
   let secNo = 0;
   const ICONS = { cloud: 'M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.2 4.5 4.5 0 0 0 7 18zM12 11v4m-2-2h4', radar: 'M12 12l6-6M12 3a9 9 0 1 0 9 9M12 7a5 5 0 1 0 5 5', target: 'M12 2v4m0 12v4M2 12h4m12 0h4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z', term: 'M4 5h16v14H4zM7 9l3 3-3 3m5 0h5', layers: 'M12 3l9 5-9 5-9-5 9-5zm-9 9l9 5 9-5M3 16l9 5 9-5', badge: 'M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5zm-3 10l2 2 4-4', cap: 'M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5' };
-  const icon = (g) => { const k = /Cloud/.test(g) ? 'cloud' : /Monitor/.test(g) ? 'radar' : /Threat/.test(g) ? 'target' : /Automation/.test(g) ? 'term' : /Framework/.test(g) ? 'layers' : /Cert/.test(g) ? 'badge' : 'cap'; return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[k]}"/></svg>`; };
+  const icon = (g) => { const k = /Security operations/.test(g) ? 'badge' : /Cloud/.test(g) ? 'cloud' : /Monitor/.test(g) ? 'radar' : /Threat/.test(g) ? 'target' : /Automation/.test(g) ? 'term' : /Framework/.test(g) ? 'layers' : /Cert/.test(g) ? 'badge' : 'cap'; return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[k]}"/></svg>`; };
   // Turn on only after https://securityheaders.com/?q=neelmoradiya.com really shows A+ for the live site.
   const headersVerified = !!s.securityHeadersVerified;
   const term = [
-    ['whoami', ['neel moradiya · cloud security engineer · new york']],
+    ['whoami', ['neel moradiya · information security & it consultant · new york']],
     ['cat certifications.txt', ['CompTIA Security+', 'AWS Certified Cloud Practitioner']],
     ['ls projects/', ['securecart-aws/  azuki-threat-hunt/  vuln-mgmt-program/', 'foody-woody/  tor-threat-hunt/  neelmoradiya.com/']],
-    ['cat focus.txt', ['cloud security · AWS · detection and response']],
-    ['echo $STATUS', ['open to cloud security roles']],
+    ['cat focus.txt', ['healthcare security · cloud security (AWS) · detection and response']],
+    ['echo $STATUS', ['open to security engineer and cloud security roles']],
   ];
   const label = (word) => `<p class="label reveal"><i></i><b>${String(++secNo).padStart(2, '0')}</b></p><h2 class="title reveal">${word}</h2>`;
   const ext = (h) => (/^http/.test(h) ? ' target="_blank" rel="noopener"' : '');
@@ -39,10 +39,10 @@ export function F(s) {
 <div class="nav-r"><button class="kbtn" type="button" id="kopen" aria-label="Open quick navigation"><kbd>⌘K</kbd></button>${a(resume, 'Resume', 'btn small')}</div></header>
 
 <section id="top" class="hero wrap">
-<div class="hero-l"><p class="status rise"><i></i>Available for cloud security roles</p>
+<div class="hero-l"><p class="status rise"><i></i>Available for security and cloud security roles</p>
 <h1 class="h1 rise">Neel<br><span class="grad">Moradiya</span></h1>
-<p class="mono rise">Cloud Security Engineer · AWS · New York${headersVerified ? ' <a class="hdr" href="https://securityheaders.com/?q=neelmoradiya.com&followRedirects=on" target="_blank" rel="noopener">Security headers <b>A+</b> · verify it yourself ↗</a>' : ''}</p>
-<p class="sub rise">I secure AWS environments: least-privilege access, segmented networks, and detective controls that catch problems <em>before</em> they become incidents.</p>
+<p class="mono rise">${esc(s.headline)}${headersVerified ? ' <a class="hdr" href="https://securityheaders.com/?q=neelmoradiya.com&followRedirects=on" target="_blank" rel="noopener">Security headers <b>A+</b> · verify it yourself ↗</a>' : ''}</p>
+<p class="sub rise">I secure healthcare IT and AWS cloud environments: least-privilege access, hardened endpoints, segmented networks, and monitoring that catches problems <em>before</em> they become incidents.</p>
 <p class="pills rise">${a('#work', 'View work →', 'btn')}${a('mailto:' + s.contact.email, 'Contact me', 'btn ghost')}</p>
 <ul class="creds rise" aria-label="Credentials">${s.certs.map((c) => `<li>${esc(c.name)}</li>`).join('')}<li>MS Cybersecurity, Yeshiva University</li></ul></div>
 <div class="hero-r rise"><div class="term" role="img" aria-label="Terminal showing Neel's role, certifications, projects, and status"><div class="tbar"><i></i><i></i><i></i><span>zsh · neel@secbox</span></div><pre id="tout" data-script='${esc(JSON.stringify(term))}'></pre></div></div></section>
@@ -67,7 +67,7 @@ ${stats.map(([n, suf, l]) => `<div class="tile stat reveal"><b data-count="${n}"
 
 <div class="sep reveal" aria-hidden="true"><i></i></div>
 <section id="experience" class="wrap">${label('Experience')}<div class="timeline">
-${s.experience.map((e) => `<div class="job reveal"><div class="when">${esc(e.dates)}</div><div><h3>${esc(e.role)}</h3><div class="org">${esc(e.org)} · ${esc(e.where)}</div><ul>${e.points.slice(0, 3).map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div></div>`).join('')}
+${s.experience.map((e) => `<div class="job reveal"><div class="when">${esc(e.dates)}</div><div><h3>${esc(e.role)}</h3><div class="org">${esc(e.org)} · ${esc(e.where)}</div><ul>${e.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div></div>`).join('')}
 </div></section>
 
 <div class="sep reveal" aria-hidden="true"><i></i></div>
