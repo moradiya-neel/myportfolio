@@ -5,7 +5,8 @@
 export const site = {
   name: 'Neel Moradiya',
   fullName: 'Neelkumar Rameshbhai Moradiya',
-  title: 'Information Security & IT Consultant',
+  title: 'Information Security & IT Consultant',   // real job title (schema.org jobTitle)
+  brand: 'Information Security and Cloud Security', // headline in the tab, search results, and link previews
   headline: 'Information Security · Cloud Security · New York',
   location: 'New York, NY',
   tagline: 'I secure healthcare IT and AWS cloud environments: HIPAA risk assessment, endpoint protection, access control, network segmentation, and least-privilege cloud design.',
